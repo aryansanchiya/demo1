@@ -79,9 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'demo1',
-        'CLIENT': {
-            'host': 'localhost',  # Example: 'mongodb+srv://your_host'
-        }
+        'host': 'mongodb://localhost:27017/',  # Example: 'mongodb+srv://your_host'
+        'PORT': 27017,
     }
 }
 

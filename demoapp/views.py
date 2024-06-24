@@ -18,7 +18,10 @@ def get_data(request):
     password = request.data.get('password')
     try:
         info = Info.objects.get(username=username, password=password)
-        serializer = InfoSerializer(info)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if info is not None:
+            serializer = InfoSerializer(info)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_404_NOT_FOUND)
     except Info.DoesNotExist:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_404_NOT_FOUND)
